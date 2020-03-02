@@ -76,3 +76,4 @@ WHERE a.match_id=b.match_id and killer <> '' GROUP BY username, killer, play_tim
 
 ### AWS Quicksight
 Finally this data is visualized in AWS Quicksight.
+![alt text](https://github.com/MPierre9/DBD_Game_Sim/blob/master/pics/quicksight_dash_3.png?raw=true)
