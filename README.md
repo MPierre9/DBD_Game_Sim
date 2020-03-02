@@ -1,6 +1,7 @@
 # Dead By Daylight Simple Game Sim
 **Summary:** This repo gives a brief overview of the process, architecture, and various components used to make a simple Dead By Daylight (DBD) game data stream. This was created primarily for learning purposes. 
-
+In the simulated data we try to show a correlation between a players play time and the amount of kills they can get (higher play time more likely).
+![alt text](https://github.com/MPierre9/DBD_Game_Sim/blob/master/pics/quicksight_dash.png?raw=true)
 ## Components used
 
 ### MySQL Database
