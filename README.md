@@ -1,7 +1,11 @@
 # Dead By Daylight Simple Game Data Pipeline
 **Summary:** This repo gives a brief overview of the process, architecture, and various components used to make a simple Dead By Daylight (DBD) game data stream. This was created primarily for learning purposes. 
 In the simulated data we try to show a correlation between a players play time and the amount of kills they can get (higher play time more likely).
+
+Day one:
 ![alt text](https://github.com/MPierre9/DBD_Game_Sim/blob/master/pics/quicksight_dash.png?raw=true)
+As more data streams (stopped intermittently because of AWS Cost):
+![alt text](https://github.com/MPierre9/DBD_Game_Sim/blob/master/pics/quicksight_dash_4.gif?raw=true)
 ![alt text](https://github.com/MPierre9/DBD_Game_Sim/blob/master/pics/sample_game.gif?raw=true)
 ## Components used
 
@@ -48,6 +52,20 @@ aws_secret_access_key = YOUR_SECRET
 [default]
 region=us-east-1
 ```
+20. Run `curl icanhazip.com` to get public IP and add to AWS security group for port `3306`
+21. Grab https://github.com/MPierre9/DBD_Game_Sim/blob/master/dbd_game_sim.py and test in container
+22. Execute `chmod +x dbd_game_sim.py`
+23. Exit container and commit changes `docker commit container_id centos_stream_1`
+24. With the `centos_stream_1` image create the desired amount of instances and execute.
+25. Execute `nohup python3 -u ./dbd_game_sim.py > ~/dbd_game_sim.log
+26. Ensure process is running in background with `ps ax`
+27. To kill run `pkill -f dbd_game_sim.py`
+
+**Checking Container Data Log**
+![alt text](https://github.com/MPierre9/DBD_Game_Sim/blob/master/pics/docker_data_log_monitoring.gif?raw=true)
+
+**Future state, creating a Dockerfile to has libraries and packages pre-installed**
+
 
 ### AWS Elasticache
 The Elasticache cache is used to cache results from the game sim Python script to increase query performance and decrease DB strain. The idea is if multiple game sims are running then they could work off the cached player list and killers.
