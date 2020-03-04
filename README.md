@@ -13,6 +13,42 @@ This DB contains two tables `USER` and `KILLER`. The game simulator Python scrip
 Two EC2 instances were created. One to run our backed Python scrip to simulate a game and a second for our MySQL DB instance.
 ![alt text](https://github.com/MPierre9/DBD_Game_Sim/blob/master/pics/ec2_servers.png?raw=true)
 
+### Docker
+
+To test scalability Docker containers were used to simulate multiple instances of the data being generated.
+![alt text](https://github.com/MPierre9/DBD_Game_Sim/blob/master/pics/docker_streams.png?raw=true
+)
+
+***Steps involved***
+1. Installing Docker on RHEL EC2 instance
+2. `docker pull centos`
+3. `docker run centos`
+4. `docker run -it -d centos`
+5. `docker exec -it container_id /bin/bash`
+6. `yum install update -y`
+7. `yum install python3`
+8. `yum install nano`
+9. `yum install passwd`
+10. `useradd rm_log` our service account user for MySQL
+11. `passwd rm_log` setting up user password
+12. `su - rm_log` 
+13. Setup AWS Credentials
+14. `mkdir ~/.aws`
+15. `nano ~/.aws/credentials`
+16. Adding:
+```
+[default]
+aws_access_key_id = YOUR_KEY
+aws_secret_access_key = YOUR_SECRET
+```
+17. Setup AWS Region Config
+18. `nano ~/.aws/config`
+19. Adding:
+```
+[default]
+region=us-east-1
+```
+
 ### AWS Elasticache
 The Elasticache cache is used to cache results from the game sim Python script to increase query performance and decrease DB strain. The idea is if multiple game sims are running then they could work off the cached player list and killers.
 ![alt text](https://github.com/MPierre9/DBD_Game_Sim/blob/master/pics/AWS_elasticache.png?raw=true)
